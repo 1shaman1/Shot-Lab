@@ -4,9 +4,7 @@ using System.Text;
 
 namespace ShotLab
 {
-    public enum MapCell
-	{
-		Wall,
-		Empty
-	}
+    class Class2
+    {
+    }
 }

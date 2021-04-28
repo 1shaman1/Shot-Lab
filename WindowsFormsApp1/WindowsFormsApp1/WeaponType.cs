@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ShotLab
 {
-    public enum MapCell
-	{
-		Wall,
-		Empty
-	}
+    public enum Weapon
+    {
+        Rife,
+        Knife
+    }
 }

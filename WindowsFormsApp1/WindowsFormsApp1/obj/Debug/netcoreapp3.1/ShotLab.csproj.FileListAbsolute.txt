@@ -1,0 +1,15 @@
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\netcoreapp3.1\ShotLab.csprojAssemblyReference.cache
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\netcoreapp3.1\ShotLab.csproj.GenerateResource.cache
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\netcoreapp3.1\ShotLab.AssemblyInfoInputs.cache
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\netcoreapp3.1\ShotLab.AssemblyInfo.cs
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\netcoreapp3.1\ShotLab.csproj.CoreCompileInputs.cache
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\netcoreapp3.1\ShotLab.exe
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\netcoreapp3.1\ShotLab.deps.json
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\netcoreapp3.1\ShotLab.runtimeconfig.json
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\netcoreapp3.1\ShotLab.runtimeconfig.dev.json
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\netcoreapp3.1\ShotLab.dll
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\netcoreapp3.1\ShotLab.pdb
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\netcoreapp3.1\ShotLab.dll
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\netcoreapp3.1\ShotLab.pdb
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\netcoreapp3.1\ShotLab.genruntimeconfig.cache
+C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\netcoreapp3.1\ShotLab.ShotLabForm.resources
