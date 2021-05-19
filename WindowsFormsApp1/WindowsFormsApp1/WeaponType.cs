@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ShotLab
 {
-    public enum Weapon
+    public enum WeaponType
     {
-        Rife,
+        Rifle,
         Knife
     }
 }

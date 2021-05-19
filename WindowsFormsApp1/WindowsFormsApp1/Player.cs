@@ -1,31 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Numerics;
 using System.Text;
+using System.Windows.Forms;
 
 namespace ShotLab
 {
-    class Player
+    public class Player : Prop
     {
-        public int Health { get; set; }
-        public readonly Point Position;
-        
-        public Player(Point startPos)
+        private readonly Dictionary<WeaponType, Weapon> weapons = new Dictionary<WeaponType, Weapon>()
         {
-            Health = 100;
-            Position = startPos;
+            { WeaponType.Rifle, new Weapon(500, 30, WeaponType.Knife)},
+            { WeaponType.Knife, new Weapon(30, 100, WeaponType.Rifle)}
+        };
+
+        public Weapon CurrentWeapon;
+        public Player(int health, Point startPosition)
+        {
+            Sprite = new Bitmap(@"C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\ShotLabImages\Player.png");
+            Health = health;
+            Position = startPosition;
+            CurrentWeapon = new Weapon(500, 30, WeaponType.Knife);
         }
-        public bool IsDead() =>
-            Health < 0;
 
-        public void Move()
+
+        public void ChangeWeapon()
         {
-
-        }
-
-        public void Shoot()
-        {
-
+            CurrentWeapon = weapons[CurrentWeapon.NextType];
         }
     }
 }
