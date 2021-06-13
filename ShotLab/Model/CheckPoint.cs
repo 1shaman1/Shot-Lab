@@ -15,12 +15,12 @@ namespace ShotLab
         {
             Position = position;
             Visited = false;
-            Sprite = new Bitmap(@"C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\ShotLabImages\BlueCheck.jpg");
+            Sprite = Properties.Resources.BlueCheck;
         }
         public void VisitCheckPoint()
         {
             Visited = true;
-            Sprite = new Bitmap(@"C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\ShotLabImages\RedCheck.jpeg");
+            Sprite = Properties.Resources.RedCheck;
         }
     }
 }

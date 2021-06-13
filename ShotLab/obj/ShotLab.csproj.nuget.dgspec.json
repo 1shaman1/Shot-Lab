@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\progs_for_visualStudio\\ShotLab\\WindowsFormsApp1\\ShotLab\\ShotLab.csproj": {}
+    "C:\\Progs\\ShotLab\\ShotLab\\ShotLab.csproj": {}
   },
   "projects": {
-    "C:\\progs_for_visualStudio\\ShotLab\\WindowsFormsApp1\\ShotLab\\ShotLab.csproj": {
+    "C:\\Progs\\ShotLab\\ShotLab\\ShotLab.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\progs_for_visualStudio\\ShotLab\\WindowsFormsApp1\\ShotLab\\ShotLab.csproj",
+        "projectUniqueName": "C:\\Progs\\ShotLab\\ShotLab\\ShotLab.csproj",
         "projectName": "ShotLab",
-        "projectPath": "C:\\progs_for_visualStudio\\ShotLab\\WindowsFormsApp1\\ShotLab\\ShotLab.csproj",
-        "packagesPath": "C:\\Users\\narx1_adr54cu\\.nuget\\packages\\",
-        "outputPath": "C:\\progs_for_visualStudio\\ShotLab\\WindowsFormsApp1\\ShotLab\\obj\\",
+        "projectPath": "C:\\Progs\\ShotLab\\ShotLab\\ShotLab.csproj",
+        "packagesPath": "C:\\Users\\narx1\\.nuget\\packages\\",
+        "outputPath": "C:\\Progs\\ShotLab\\ShotLab\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\narx1_adr54cu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\narx1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.409\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

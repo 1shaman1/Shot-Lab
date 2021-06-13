@@ -13,7 +13,7 @@ namespace ShotLab
         {
             Health = health;
             Position = position;
-            Sprite = new Bitmap(@"C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\ShotLabImages\enemy1.png");
+            Sprite = Properties.Resources.enemy1;
             CurrentWeapon = new Weapon(2, 100, WeaponType.Rifle);
         }
     }

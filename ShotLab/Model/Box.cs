@@ -11,7 +11,7 @@ namespace ShotLab
         {
             Health = health;
             Position = position;
-            Sprite = new Bitmap(@"C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\ShotLabImages\Box.png");
+            Sprite = Properties.Resources.box;
         }
     }
 }

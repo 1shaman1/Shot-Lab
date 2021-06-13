@@ -16,8 +16,7 @@ namespace ShotLab
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var form = new ShotLabForm();
-            Application.Run(form);
+            Application.Run(new MenuForm());
         }
     }
 }

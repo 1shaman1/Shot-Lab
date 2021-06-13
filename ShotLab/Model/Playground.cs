@@ -16,6 +16,7 @@ namespace ShotLab
 		public readonly List<Box> Boxes;
 		public readonly List<Killer> Killers;
 		public readonly CheckPoint[] CheckPoints;
+		public bool GameIsPaused = false;
 
 		public bool GameIsFinished { get; set; }
 

@@ -56,9 +56,6 @@
     <None Update="Resources\ShotLabImages\RedCheck.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\ShotLabImages\survivor-move_flashlight_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Resources\ShotLabImages\Win.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

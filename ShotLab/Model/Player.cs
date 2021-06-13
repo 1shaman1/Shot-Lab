@@ -18,7 +18,7 @@ namespace ShotLab
         public Weapon CurrentWeapon;
         public Player(int health, Point startPosition)
         {
-            Sprite = new Bitmap(@"C:\progs_for_visualStudio\ShotLab\WindowsFormsApp1\ShotLabImages\Player.png");
+            Sprite = Properties.Resources.Player;
             Health = health;
             Position = startPosition;
             CurrentWeapon = new Weapon(500, 30, WeaponType.Knife);

@@ -63,6 +63,16 @@ namespace ShotLab.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BackMenu {
+            get {
+                object obj = ResourceManager.GetObject("BackMenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BlueCheck {
             get {
                 object obj = ResourceManager.GetObject("BlueCheck", resourceCulture);
@@ -96,6 +106,16 @@ namespace ShotLab.Properties {
         internal static System.Drawing.Bitmap enemy1 {
             get {
                 object obj = ResourceManager.GetObject("enemy1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap enemyDeath {
+            get {
+                object obj = ResourceManager.GetObject("enemyDeath", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -169,12 +189,11 @@ namespace ShotLab.Properties {
         }
         
         /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        ///   Ищет локализованную строку, похожую на .
         /// </summary>
-        internal static System.Drawing.Bitmap survivor_move_flashlight_0 {
+        internal static string Tutorial {
             get {
-                object obj = ResourceManager.GetObject("survivor_move_flashlight_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("Tutorial", resourceCulture);
             }
         }
         

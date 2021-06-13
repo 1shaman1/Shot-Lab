@@ -15,11 +15,13 @@ namespace ShotLab
 		private readonly Image mapImage = Properties.Resources.LabBack;
 		private readonly Image wallImage = Properties.Resources.LabWall;
 		private readonly Image exitImage = Properties.Resources.Exit;
+		private readonly MenuForm menuForm;
+		public readonly Walker Walker = new Walker();
 
-		public new SizeF Size => new SizeF(currentPlayGround.Laboratory.GetLength(0), currentPlayGround.Laboratory.GetLength(1));
-		public Size LevelSize => new Size(currentPlayGround.Laboratory.GetLength(0), currentPlayGround.Laboratory.GetLength(1));
+        public new SizeF Size => new SizeF(CurrentPlayGround.Laboratory.GetLength(0), CurrentPlayGround.Laboratory.GetLength(1));
+		public Size LevelSize => new Size(CurrentPlayGround.Laboratory.GetLength(0), CurrentPlayGround.Laboratory.GetLength(1));
 
-		private readonly PlayGround currentPlayGround;
+		public readonly PlayGround CurrentPlayGround;
 
 
 		protected override void OnLoad(EventArgs e)
@@ -38,11 +40,11 @@ namespace ShotLab
 
 		private void Mover(object sender, KeyEventArgs e)
         {
-			var walker = new Walker();
-			walker.Move(currentPlayGround.Gamer, currentPlayGround, e);
-			walker.Rotate(currentPlayGround.Gamer, e);
-			walker.MakeShot(currentPlayGround.Gamer, currentPlayGround, e);
-			walker.ChangeWeapon(currentPlayGround.Gamer, e);
+			Walker.Move(CurrentPlayGround.Gamer, CurrentPlayGround, e);
+			Walker.Rotate(CurrentPlayGround.Gamer, e);
+			Walker.MakeShot(CurrentPlayGround.Gamer, CurrentPlayGround, e);
+			Walker.ChangeWeapon(CurrentPlayGround.Gamer, e);
+			Walker.Pause(CurrentPlayGround, e);
         }
 
 
@@ -53,80 +55,85 @@ namespace ShotLab
 			DrawPlayer(e);
 			DrawBoxes(e);
 			DrawKillers(e);
-			if(currentPlayGround.GameIsFinished)
+			if(CurrentPlayGround.GameIsFinished)
 				DrawFinishScreen(e, winGameImage);
-			if(currentPlayGround.GameIsOver())
+			if(CurrentPlayGround.GameIsOver())
 				DrawFinishScreen(e, gameOverImage);
 
 		}
-        public ShotLabForm()
+        public ShotLabForm(string level, MenuForm menu)
 		{
+			menuForm = menu;
 			DoubleBuffered = false;
-			var level = LoadLevels();
-
-			currentPlayGround = level;
+			CurrentPlayGround = LoadLevels(level);
 			CreateMap();
 			Invalidate();
-			var timer = new Timer { Interval = 150};
-			this.KeyDown += new KeyEventHandler(Mover);
+			var timer = new Timer { Interval = 110};
+			KeyDown += (sender, args) =>
+			{
+				Mover(sender, args);
+				if (!CurrentPlayGround.GameIsPaused)
+					timer.Start();
+			};
+			
 			timer.Tick += (sender, args) =>
 			{
 				MoverKillers();
 				Invalidate();
-				if(currentPlayGround.GameIsFinished)
+				if (CurrentPlayGround.GameIsPaused || CurrentPlayGround.GameIsFinished || CurrentPlayGround.GameIsOver())
+				{
 					timer.Stop();
-				if (currentPlayGround.GameIsOver())
-					timer.Stop();
-			};
-					
+					menuForm.Show();
+				}
+			};					
             timer.Start();
 		}
 
-		private static PlayGround LoadLevels()
+		private static PlayGround LoadLevels(string level)
 		{
-			return  PlayGround.FromText(Properties.Resources.Level1);			
+			return  PlayGround.FromText(level);			
 		}
 
 		public void CreateMap()
 		{
-			backGround = new Bitmap(LevelSize.Width * 25, LevelSize.Height * 25);
+			backGround = new Bitmap(LevelSize.Width * 35, LevelSize.Height * 35);
 			var graphics = Graphics.FromImage(backGround);
-			for (var x = 0; x < currentPlayGround.Laboratory.GetLength(0); x++)
+			for (var x = 0; x < CurrentPlayGround.Laboratory.GetLength(0); x++)
 			{
-				for (var y = 0; y < currentPlayGround.Laboratory.GetLength(1); y++)
+				for (var y = 0; y < CurrentPlayGround.Laboratory.GetLength(1); y++)
 				{
-					if (currentPlayGround.Laboratory[x, y] == MapCell.Wall)
-						graphics.DrawImage(wallImage, new Rectangle(x * 25, y * 25, 25, 25));
-					else if (currentPlayGround.Laboratory[x, y] == MapCell.Empty)
-						graphics.DrawImage(mapImage, new Rectangle(x * 25, y * 25, 25, 25));
+					if (CurrentPlayGround.Laboratory[x, y] == MapCell.Wall)
+						graphics.DrawImage(wallImage, new Rectangle(x * 35, y * 35, 35, 35));
+					else if (CurrentPlayGround.Laboratory[x, y] == MapCell.Empty)
+						graphics.DrawImage(mapImage, new Rectangle(x * 35, y * 35, 35, 35));
 				}
 			}
-			graphics.DrawImage(exitImage, new Rectangle(currentPlayGround.Exit.X * 25, currentPlayGround.Exit.Y * 25, 25, 25));			
+			graphics.DrawImage(exitImage, new Rectangle(CurrentPlayGround.Exit.X * 35, CurrentPlayGround.Exit.Y * 35, 35, 35));			
 		}
 
 		private void DrawPlayer(PaintEventArgs e)
         {
 			var graphics = e.Graphics;
-			var player = currentPlayGround.Gamer;
+			var player = CurrentPlayGround.Gamer;
 			var angle = player.CurrentWeapon.Angle;
-			graphics.TranslateTransform(player.Position.X * 25 + 25 / 2, player.Position.Y * 25 + 25 / 2);
+			graphics.TranslateTransform(player.Position.X * 35 + 35 / 2, player.Position.Y * 35 + 35 / 2);
 			graphics.RotateTransform(angle);
-			graphics.TranslateTransform(-player.Position.X * 25 - 25 / 2, -player.Position.Y * 25 - 25 / 2);
+			graphics.TranslateTransform(-player.Position.X * 35 - 35 / 2, -player.Position.Y * 35 - 35 / 2);
 			graphics.DrawImage(player.Sprite, 
-				new Rectangle(player.Position.X *25 , player.Position.Y *25 , 25, 25));
+				new Rectangle(player.Position.X *35 , player.Position.Y *35 , 35, 35));
 			graphics.ResetTransform();
 		}
 
 		private void DrawKillers(PaintEventArgs e)
         {
 			var graphics = e.Graphics;
-			foreach (var killer in currentPlayGround.Killers)
+			foreach (var killer in CurrentPlayGround.Killers)
 			{
 				var angle = killer.CurrentWeapon.Angle;
-				graphics.TranslateTransform(killer.Position.X * 25 + 25 / 2, killer.Position.Y * 25 + 25 / 2);
+				graphics.TranslateTransform(killer.Position.X * 35 + 35 / 2, killer.Position.Y * 35 + 35 / 2);
 				graphics.RotateTransform(angle);
-				graphics.TranslateTransform(-killer.Position.X * 25 - 25 / 2, -killer.Position.Y * 25 - 25 / 2);
-				graphics.DrawImage(killer.Sprite, new Rectangle(killer.Position.X * 25, killer.Position.Y * 25, 25, 25));
+				graphics.TranslateTransform(-killer.Position.X * 35 - 35 / 2, -killer.Position.Y * 35 - 35 / 2);
+				graphics.DrawImage(killer.Sprite, new Rectangle(killer.Position.X * 35, killer.Position.Y * 35, 35, 35));
 				graphics.ResetTransform();
 			}
 		}
@@ -134,27 +141,29 @@ namespace ShotLab
         {
 
 			var graphics = e.Graphics;
-			foreach (var box in currentPlayGround.Boxes)
-				graphics.DrawImage(box.Sprite, new Rectangle(box.Position.X * 25, box.Position.Y * 25, 25, 25));			
+			foreach (var box in CurrentPlayGround.Boxes)
+				graphics.DrawImage(box.Sprite, new Rectangle(box.Position.X * 35, box.Position.Y * 35, 35, 35));			
 		}
 
 		private void DrawChecks(PaintEventArgs e)
 		{
 			var graphics = e.Graphics;
-			foreach (var checkPoint in currentPlayGround.CheckPoints)
-				graphics.DrawImage(checkPoint.Sprite, new Rectangle(checkPoint.Position.X * 25, checkPoint.Position.Y * 25, 25, 25));
+			foreach (var checkPoint in CurrentPlayGround.CheckPoints)
+				graphics.DrawImage(checkPoint.Sprite, new Rectangle(checkPoint.Position.X * 35, checkPoint.Position.Y * 35, 35, 35));
 		}
 
 		private void MoverKillers()
         {
-			foreach(var killer in currentPlayGround.Killers)
-				killer.Intelect.MoveKiller(killer, currentPlayGround);
+			foreach(var killer in CurrentPlayGround.Killers)
+				killer.Intelect.MoveKiller(killer, CurrentPlayGround);
         }
 
 		private void DrawFinishScreen(PaintEventArgs e, Image image)
         {
 			var graphics = e.Graphics;
-			graphics.DrawImage(image, 0 ,0, image.Width, image.Height);
+			graphics.DrawImage(image, 0 ,0, Size.Width * 35, Size.Height * 35);
 		}
+
+		public PlayGround ShowCurrentPlayGround() => CurrentPlayGround;
     }
 }

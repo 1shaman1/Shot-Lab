@@ -24,6 +24,7 @@ namespace ShotLab
             { Keys.Left , new Size (-1, 0)},
             { Keys.Right , new Size (1, 0)}
         };
+
         public void Move(Player player, PlayGround playGround, KeyEventArgs e)
         {
             var currentPosition = player.Position;
@@ -76,6 +77,15 @@ namespace ShotLab
         {
             if (e.KeyCode == Keys.Q)
                 player.ChangeWeapon();
+        }
+
+        public void Pause(PlayGround playGround, KeyEventArgs e)
+        {
+            var key = e.KeyCode;
+            if (key == Keys.Escape && !playGround.GameIsPaused)
+                playGround.GameIsPaused = true;
+            else if (key == Keys.Escape && playGround.GameIsPaused)
+                playGround.GameIsPaused = false;
         }
     }
 }
