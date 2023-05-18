@@ -8,6 +8,9 @@ using System.Linq;
 
 namespace ShotLab
 {
+    /// <summary>
+    /// класс оружия
+    /// </summary>
     public class Weapon
     {
         private readonly Dictionary<Size, float> angles = new Dictionary<Size, float>()

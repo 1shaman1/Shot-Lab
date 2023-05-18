@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShotLab
 {
+    /// <summary>
+    /// класс противника наследуется от класса объекта карты
+    /// </summary>
     public class Killer : Prop
     {
         public Weapon CurrentWeapon;

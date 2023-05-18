@@ -6,15 +6,42 @@ using System.Text;
 
 namespace ShotLab
 {
+	/// <summary>
+	/// игровое поле она же модель игры
+	/// </summary>
     public class PlayGround
     {
+		/// <summary>
+		/// карта игрового поля
+		/// </summary>
         public readonly MapCell[,] Laboratory;
+		/// <summary>
+		/// сатартовая позиция игрока
+		/// </summary>
         public readonly Point InitialPosition;
+		/// <summary>
+		/// позиция финиша
+		/// </summary>
 		public readonly Point Exit;
+		/// <summary>
+		/// позиция стен
+		/// </summary>
 		public readonly Point[] Walls;
+		/// <summary>
+		/// игрок
+		/// </summary>
 		public readonly Player Gamer;
+		/// <summary>
+		/// каробки
+		/// </summary>
 		public readonly List<Box> Boxes;
+		/// <summary>
+		/// противники
+		/// </summary>
 		public readonly List<Killer> Killers;
+		/// <summary>
+		/// чекпоинты чтобы выйиграть их надо все посетить
+		/// </summary>
 		public readonly CheckPoint[] CheckPoints;
 		public bool GameIsPaused = false;
 

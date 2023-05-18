@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ShotLab
 {
+    /// <summary>
+    /// базовый класс объекта карты
+    /// </summary>
     public class Prop
     {
         public int Health { get; set; }

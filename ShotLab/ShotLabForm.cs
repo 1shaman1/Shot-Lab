@@ -7,6 +7,10 @@ using System.IO;
 
 namespace ShotLab
 {
+	/// <summary>
+	/// форма она же View она представление игры, честно тут по большому счёту творится цыганская магия, но если будут вопросы - пиши попробую объяснит
+	/// все фокусы
+	/// </summary>
     class ShotLabForm : Form
     {
 		private Image backGround;
@@ -17,8 +21,11 @@ namespace ShotLab
 		private readonly Image exitImage = Properties.Resources.Exit;
 		private readonly MenuForm menuForm;
 		public readonly Walker Walker = new Walker();
+		private readonly Size screenResolution = Screen.PrimaryScreen.Bounds.Size;
+		private int cellLength;
 
-        public new SizeF Size => new SizeF(CurrentPlayGround.Laboratory.GetLength(0), CurrentPlayGround.Laboratory.GetLength(1));
+
+		public new SizeF Size => new SizeF(CurrentPlayGround.Laboratory.GetLength(0), CurrentPlayGround.Laboratory.GetLength(1));
 		public Size LevelSize => new Size(CurrentPlayGround.Laboratory.GetLength(0), CurrentPlayGround.Laboratory.GetLength(1));
 
 		public readonly PlayGround CurrentPlayGround;
@@ -42,12 +49,11 @@ namespace ShotLab
         {
 			Walker.Move(CurrentPlayGround.Gamer, CurrentPlayGround, e);
 			Walker.Rotate(CurrentPlayGround.Gamer, e);
+
 			Walker.MakeShot(CurrentPlayGround.Gamer, CurrentPlayGround, e);
 			Walker.ChangeWeapon(CurrentPlayGround.Gamer, e);
 			Walker.Pause(CurrentPlayGround, e);
         }
-
-
 
 		private void update(PaintEventArgs e)
         {
@@ -94,21 +100,25 @@ namespace ShotLab
 			return  PlayGround.FromText(level);			
 		}
 
+		/// <summary>
+		/// отрисовка карты
+		/// </summary>
 		public void CreateMap()
 		{
-			backGround = new Bitmap(LevelSize.Width * 35, LevelSize.Height * 35);
+			cellLength = Math.Min(screenResolution.Width / LevelSize.Width, screenResolution.Height / LevelSize.Height);
+			backGround = new Bitmap(LevelSize.Width * cellLength, LevelSize.Height * cellLength);
 			var graphics = Graphics.FromImage(backGround);
 			for (var x = 0; x < CurrentPlayGround.Laboratory.GetLength(0); x++)
 			{
 				for (var y = 0; y < CurrentPlayGround.Laboratory.GetLength(1); y++)
 				{
 					if (CurrentPlayGround.Laboratory[x, y] == MapCell.Wall)
-						graphics.DrawImage(wallImage, new Rectangle(x * 35, y * 35, 35, 35));
+						graphics.DrawImage(wallImage, new Rectangle(x * cellLength, y * cellLength, cellLength, cellLength));
 					else if (CurrentPlayGround.Laboratory[x, y] == MapCell.Empty)
-						graphics.DrawImage(mapImage, new Rectangle(x * 35, y * 35, 35, 35));
+						graphics.DrawImage(mapImage, new Rectangle(x * cellLength, y * cellLength, cellLength, cellLength));
 				}
 			}
-			graphics.DrawImage(exitImage, new Rectangle(CurrentPlayGround.Exit.X * 35, CurrentPlayGround.Exit.Y * 35, 35, 35));			
+			graphics.DrawImage(exitImage, new Rectangle(CurrentPlayGround.Exit.X * cellLength, CurrentPlayGround.Exit.Y * cellLength, cellLength, cellLength));			
 		}
 
 		private void DrawPlayer(PaintEventArgs e)
@@ -116,11 +126,11 @@ namespace ShotLab
 			var graphics = e.Graphics;
 			var player = CurrentPlayGround.Gamer;
 			var angle = player.CurrentWeapon.Angle;
-			graphics.TranslateTransform(player.Position.X * 35 + 35 / 2, player.Position.Y * 35 + 35 / 2);
+			graphics.TranslateTransform(player.Position.X * cellLength + cellLength / 2, player.Position.Y * cellLength + cellLength / 2);
 			graphics.RotateTransform(angle);
-			graphics.TranslateTransform(-player.Position.X * 35 - 35 / 2, -player.Position.Y * 35 - 35 / 2);
+			graphics.TranslateTransform(-player.Position.X * cellLength - cellLength / 2, -player.Position.Y * cellLength - cellLength / 2);
 			graphics.DrawImage(player.Sprite, 
-				new Rectangle(player.Position.X *35 , player.Position.Y *35 , 35, 35));
+				new Rectangle(player.Position.X *cellLength , player.Position.Y *cellLength , cellLength, cellLength));
 			graphics.ResetTransform();
 		}
 
@@ -130,26 +140,26 @@ namespace ShotLab
 			foreach (var killer in CurrentPlayGround.Killers)
 			{
 				var angle = killer.CurrentWeapon.Angle;
-				graphics.TranslateTransform(killer.Position.X * 35 + 35 / 2, killer.Position.Y * 35 + 35 / 2);
+				graphics.TranslateTransform(killer.Position.X * cellLength + cellLength / 2, killer.Position.Y * cellLength + cellLength / 2);
 				graphics.RotateTransform(angle);
-				graphics.TranslateTransform(-killer.Position.X * 35 - 35 / 2, -killer.Position.Y * 35 - 35 / 2);
-				graphics.DrawImage(killer.Sprite, new Rectangle(killer.Position.X * 35, killer.Position.Y * 35, 35, 35));
+				graphics.TranslateTransform(-killer.Position.X * cellLength - cellLength / 2, -killer.Position.Y * cellLength - cellLength / 2);
+				graphics.DrawImage(killer.Sprite, new Rectangle(killer.Position.X * cellLength, killer.Position.Y * cellLength, cellLength, cellLength));
 				graphics.ResetTransform();
 			}
 		}
+
 		private void DrawBoxes(PaintEventArgs e)
         {
-
 			var graphics = e.Graphics;
 			foreach (var box in CurrentPlayGround.Boxes)
-				graphics.DrawImage(box.Sprite, new Rectangle(box.Position.X * 35, box.Position.Y * 35, 35, 35));			
+				graphics.DrawImage(box.Sprite, new Rectangle(box.Position.X * cellLength, box.Position.Y * cellLength, cellLength, cellLength));			
 		}
 
 		private void DrawChecks(PaintEventArgs e)
 		{
 			var graphics = e.Graphics;
 			foreach (var checkPoint in CurrentPlayGround.CheckPoints)
-				graphics.DrawImage(checkPoint.Sprite, new Rectangle(checkPoint.Position.X * 35, checkPoint.Position.Y * 35, 35, 35));
+				graphics.DrawImage(checkPoint.Sprite, new Rectangle(checkPoint.Position.X * cellLength, checkPoint.Position.Y * cellLength, cellLength, cellLength));
 		}
 
 		private void MoverKillers()
@@ -161,7 +171,7 @@ namespace ShotLab
 		private void DrawFinishScreen(PaintEventArgs e, Image image)
         {
 			var graphics = e.Graphics;
-			graphics.DrawImage(image, 0 ,0, Size.Width * 35, Size.Height * 35);
+			graphics.DrawImage(image, 0 ,0, Size.Width * cellLength, Size.Height * cellLength);
 		}
 
 		public PlayGround ShowCurrentPlayGround() => CurrentPlayGround;

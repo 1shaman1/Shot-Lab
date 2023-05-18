@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace ShotLab
 {
+    /// <summary>
+    /// собственная реализация односвязного списка
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SinglyLinkedList<T> : IEnumerable<T>
     {
         public readonly T Value;

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Progs\\ShotLab\\ShotLab\\ShotLab.csproj": {}
+    "C:\\Progs\\ShotLabGame\\Shot-Lab\\ShotLab\\ShotLab.csproj": {}
   },
   "projects": {
-    "C:\\Progs\\ShotLab\\ShotLab\\ShotLab.csproj": {
+    "C:\\Progs\\ShotLabGame\\Shot-Lab\\ShotLab\\ShotLab.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Progs\\ShotLab\\ShotLab\\ShotLab.csproj",
+        "projectUniqueName": "C:\\Progs\\ShotLabGame\\Shot-Lab\\ShotLab\\ShotLab.csproj",
         "projectName": "ShotLab",
-        "projectPath": "C:\\Progs\\ShotLab\\ShotLab\\ShotLab.csproj",
+        "projectPath": "C:\\Progs\\ShotLabGame\\Shot-Lab\\ShotLab\\ShotLab.csproj",
         "packagesPath": "C:\\Users\\narx1\\.nuget\\packages\\",
-        "outputPath": "C:\\Progs\\ShotLab\\ShotLab\\obj\\",
+        "outputPath": "C:\\Progs\\ShotLabGame\\Shot-Lab\\ShotLab\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\narx1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +30,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +42,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -55,7 +61,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

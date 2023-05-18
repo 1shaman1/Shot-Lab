@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace ShotLab
 {
+    /// <summary>
+    /// Игрок, да-да - он тоже по сути объект карты и потому он наследуется от клсса Prop
+    /// </summary>
     public class Player : Prop
     {
         private readonly Dictionary<WeaponType, Weapon> weapons = new Dictionary<WeaponType, Weapon>()

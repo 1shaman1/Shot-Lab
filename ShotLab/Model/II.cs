@@ -6,8 +6,12 @@ using System.Linq;
 
 namespace ShotLab
 {
+	/// <summary>
+	/// ИИ противника
+	/// </summary>
 	public class II
     {
+		System.Media.SoundPlayer snd = new System.Media.SoundPlayer(Properties.Resources.hit);
 		private readonly static List<Size> PossibleDirections = new List<Size>()
 		{
 			new Size(1, 0),
@@ -21,6 +25,7 @@ namespace ShotLab
 			if (PlayerIsNear(killer, player, out Size rotate))
 			{
 				killer.CurrentWeapon.Rotate(rotate);
+				snd.Play();
 				killer.CurrentWeapon.Shoot(killer, playGround);
 				return;
 			}			
@@ -47,6 +52,7 @@ namespace ShotLab
 				if (target == point.Value)
 					yield return point;
 				foreach (var move in PossibleDirections)
+					
 					pointsQueue.Enqueue(CreatePoint(move.Width, move.Height, point));
 			}
 		}
